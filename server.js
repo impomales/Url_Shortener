@@ -5,7 +5,7 @@ var app = express()
 var db
 
 app.get('/', function(req, res) {
-    res.send('hello world.')
+    res.send('README.md')
 })
 
 mongo.connect('mongodb://' + process.env.IP + ':27017/urldb', function(err, dbConn) {
