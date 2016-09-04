@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/impomales/Url_Shortener#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "express-markdown": "0.0.6",
     "mongodb": "^2.2.8"
   }
 }

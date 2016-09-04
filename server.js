@@ -1,12 +1,13 @@
 var mongo = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID
 var express = require('express')
+var path = require('path')
+var bodyParser = require('body-parser')
 var app = express()
 var db
 
-app.get('/', function(req, res) {
-    res.send('README.md')
-})
+app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'static')))
 
 mongo.connect('mongodb://' + process.env.IP + ':27017/urldb', function(err, dbConn) {
     if (err) throw err
