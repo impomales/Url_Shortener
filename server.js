@@ -12,15 +12,16 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'static')))
 
 app.get('/new/*', function(req, res) {
-    console.log(req.params.url)
-    if (!validUrl.isWebUri(req.params[0]))
+    if (!validUrl.isWebUri(req.params[0])) {
         res.json({err: 'Invalid web format'})
+        return
+    }
+    
     var url = {original_url: req.params[0], short_url: shortid.generate()}
-    // validate url.
     
     db.collection('urls').insertOne(url, function(err, result) {
         if (err) throw err;
-        res.json(url)
+        res.json({original_url: url.original_url, short_url: url.short_url})
     })
 })
 
