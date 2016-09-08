@@ -25,6 +25,18 @@ app.get('/new/*', function(req, res) {
     })
 })
 
+app.get('/:url', function(req, res) {
+    var url = req.params.url
+    
+    db.collection('urls').findOne({short_url: url}, function(err, url) {
+        if (err) throw err
+        if (url)
+            res.redirect(url.original_url)
+        else
+            res.json({err: 'invalid short url.'})
+    })
+})
+
 mongo.connect('mongodb://' + process.env.IP + ':27017/urldb', function(err, dbConn) {
     if (err) throw err
     db = dbConn
