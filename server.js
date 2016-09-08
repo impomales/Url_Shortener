@@ -37,7 +37,7 @@ app.get('/:url', function(req, res) {
     })
 })
 
-mongo.connect('mongodb://' + process.env.IP + ':27017/urldb', function(err, dbConn) {
+mongo.connect('mongodb://izzi1231:izziurldb@ds019956.mlab.com:19956/urldb', function(err, dbConn) {
     if (err) throw err
     db = dbConn
     var server = app.listen(process.env.PORT || 8080, function() {
